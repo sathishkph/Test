@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+/**
+ * Main class
+ */
+public class Player_Rating {
+    
+	/**
+     * Main method
+     * @param args 
+     */
+    public static void main(String[] args) {
+		//System.out.println("Hello World");
+		Player p = new CricketPlayer("Dev","Dutt",10);
+		p.getRating();
+    }
+	
+}
+
+abstract class Player {
+	private String firstname;
+	private String lastname;
+	Player(String firstname ,String lastname){
+		this.firstname= firstname;
+		this.lastname = lastname;
+	}
+	private String getName(){
+		return firstname + " " + lastname; 
+	} 
+	abstract int getRating();
+}
+
+class CricketPlayer extends Player{
+	private double averageRuns;
+	CricketPlayer(String firstname,String lastname,double averageRuns) {
+		super(firstname,lastname);
+		this.averageRuns = averageRuns;
+		
+	}
+	public int getRating(){
+		if (averageRuns > 55){ return 7;}
+		if (averageRuns > 50){ return 6;}
+		if (averageRuns > 40){ return 5;}
+		if (averageRuns > 30){ return 3;}
+		if (averageRuns > 20){ return 2;}
+		if (averageRuns <= 20){ return 1;}
+		return 0;
+		
+	}
+	
+}
+
+class FootballPlayer extends Player{
+	private int goals;
+	FootballPlayer(String firstname,String lastname,int goals) {
+		super(firstname,lastname);
+		this.goals = goals;
+		
+	}
+	public int getRating(){
+		if (goals > 20){ return 5;} 
+		if (goals > 15){ return 4;} 
+		if (goals > 10){ return 3;} 
+		if (goals > 5){ return 2;} 
+		if (goals <= 5){ return 1;} 
+		return 0;
+	}
+}
+
